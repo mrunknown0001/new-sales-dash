@@ -56,9 +56,31 @@ return [
 
     'url' => env('APP_URL', 'http://localhost'),
 
-    'asset_url' => env('ASSET_URL'),
+    'asset_url' => env('ASSET_URL', 'https://bfcgroup.ph'),
+
+    'root_domain' => env('ROOT_DOMAIN', 'https://bfcgroup.ph'),
 
     'master_login' => env('MASTER_LOGIN'),
+
+    'users_api_slug' => env('USERS_API_SLUG'),
+
+    'user_details_slug' => env('USER_DETAILS_SLUG'),
+
+    'farms_aip_slug' => env('FARMS_API_SLUG'),
+
+    'farm_details_slug' => env('FARM_DETAILS_SLUG'),
+
+    'departments_api_slug' => env('DEPARTMENTS_API_SLUG'),
+
+    'department_details_slug' => env('DEPARTMENT_DETAILS_SLUG'),
+
+    'sections_api_slug' => env('SECTIONS_API_SLUG'),
+
+    'section_details_slug' => env('SECTIONS_DETAILS_SLUG'),
+
+
+
+
 
     /*
     |--------------------------------------------------------------------------

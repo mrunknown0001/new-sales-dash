@@ -13,6 +13,10 @@ class AuthenticationController extends Controller
 
     public function app_login($id = null)
     {
+        if(Auth::check()) {
+            return redirect()->route('dash');
+        }
+
     	$id = GC::decryptString($id);
 
     	// Check user if registered to access this system
@@ -22,11 +26,12 @@ class AuthenticationController extends Controller
     		
     		if(Auth::loginUsingId($user->id)) {
                 // Login Success
-    			return "Logged In";
+                // Sessions For Current Users
+    			return redirect()->route('dash');
     		}
     		else {
                 // Login Error
-    			return "Login Error [1]";
+    			return "Login Error [1]. System Login Error";
     		}
     	}
     	else {
