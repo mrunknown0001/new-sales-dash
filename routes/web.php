@@ -21,4 +21,7 @@ Route::middleware('auth')->group(function() {
 	 * YOUR CODE STARTS HERE
 	 * DO NOT ALTER ABOVE CODE
 	 */
+	Route::get('/main', function() {
+		return view('layouts.main');
+	});
 });

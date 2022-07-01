@@ -56,7 +56,7 @@ return [
 
     'url' => env('APP_URL', 'http://localhost'),
 
-    'asset_url' => env('ASSET_URL', 'https://bfcgroup.ph'),
+    'asset_url' => env('ASSET_URL', 'http://localhost'),
 
     'root_domain' => env('ROOT_DOMAIN', 'https://bfcgroup.ph'),
 
