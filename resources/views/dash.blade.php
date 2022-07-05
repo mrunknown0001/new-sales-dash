@@ -5,17 +5,10 @@
 @endsection
 
 @section('content')
-	<h3>Logged In</h3>
-	<p><img id="profile_photo" src="" width="50px" alt=""></p>
-	<ul>
-		<li>Fullname: <span id="fullname"></span></li>
-		<li>Email: <span id="email"></span></li>
-	</ul>
-	<p><a href="{{ route('logout') }}">Logout</a></p>
+	
 @endsection
 
 @section('scripts')
-	<script src="{{ asset('js/jquery.min.js') }}"></script>
 	<script>
 		$.ajax({
 			type: "GET",

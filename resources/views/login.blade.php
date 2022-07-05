@@ -1,9 +1,9 @@
-@extends('layouts.app')
+@extends('layouts.guest')
 
 @section('title')
 	Login
 @endsection
 
 @section('content')
-	<h3>Login Using BGC Authenticator. :)</h3>
+	<h3 class="text-center">{{ $message }}</h3>
 @endsection

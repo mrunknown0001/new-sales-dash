@@ -14,6 +14,11 @@ class AuthenticationController extends Controller
     public function app_login($id = null)
     {
         if(Auth::check()) {
+            $id = GC::decryptString($id);
+            if($id != Auth::user()->id) {
+                Auth::logout();
+                return redirect()->route('login', ['message' => 'Please re-login using BGC Authenticator.']);
+            }
             return redirect()->route('dash');
         }
 
@@ -31,12 +36,14 @@ class AuthenticationController extends Controller
     		}
     		else {
                 // Login Error
-    			return "Login Error [1]. System Login Error";
+    			// return "Login Error [1]. System Login Error";
+                return view('login-error', ['message' => 'Login Error [1]. System Login Error.']);
     		}
     	}
     	else {
             // No Access to the system
-    		return "Login Error [2]. No Access to the System";
+    		// return "Login Error [2]. No Access to the System";
+            return view('login-error', ['message' => 'Login Error [2]. No Access to the System.']);
     	}
     }
 }
