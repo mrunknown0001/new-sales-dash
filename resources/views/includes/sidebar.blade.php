@@ -2,13 +2,29 @@
   <div class="scroll-sidebar">
     <nav class="sidebar-nav">
       <ul id="sidebarnav" class="pt-4">
-        <li class="sidebar-item {{ url()->current() ? 'selected' : '' }}">
-          <a class="sidebar-link waves-effect waves-dark sidebar-link {{ url()->current() ? 'active' : '' }}"
-              href="index.html" aria-expanded="false">
-            <i class="mdi mdi-view-dashboard"></i>
+        <li class="sidebar-item {{ url()->current() == route('dash') ? 'selected' : '' }}">
+          <a class="sidebar-link waves-effect waves-dark sidebar-link {{ url()->current() == route('dash') ? 'active' : '' }}"
+              href="{{ route('dash') }}" aria-expanded="false">
+            <i class="fa fa-tachometer-alt"></i>
             <span class="hide-menu">Dashboard</span>
           </a>
         </li>
+        @if(Auth::user()->role == 'superadmin' || Auth::user()->role == 'superuser')
+          <li class="sidebar-item {{ url()->current() == route('users') ? 'selected' : '' }}">
+            <a class="sidebar-link waves-effect waves-dark sidebar-link {{ url()->current() == route('users') ? 'active' : '' }}"
+                href="{{ route('users') }}" aria-expanded="false">
+              <i class="fa fa-users"></i>
+              <span class="hide-menu">Users</span>
+            </a>
+          </li>
+          <li class="sidebar-item {{ url()->current() == route('audits') ? 'selected' : '' }}">
+            <a class="sidebar-link waves-effect waves-dark sidebar-link {{ url()->current() == route('audits') ? 'active' : '' }}"
+                href="{{ route('audits') }}" aria-expanded="false">
+              <i class="fa fa-file"></i>
+              <span class="hide-menu">Audit Trail</span>
+            </a>
+          </li>
+        @endif
         {{-- <li class="sidebar-item">
           <a class="sidebar-link waves-effect waves-dark sidebar-link"
                 href="charts.html" aria-expanded="false">

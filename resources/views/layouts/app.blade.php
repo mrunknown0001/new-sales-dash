@@ -13,6 +13,7 @@
     <link href="{{ asset('dist/css/style.min.css') }}" rel="stylesheet">
     {{-- Styles --}}
     @yield('styles')
+    @include('includes.assets.fontawesome')
     @livewireStyles
   </head>
   <body class="font-sans antialiased">
@@ -36,6 +37,7 @@
     </div>
     @livewireScripts
     <script src="{{ asset('assets/libs/jquery/dist/jquery.min.js') }}"></script>
+    @yield('scripts')
     <script src="{{ asset('assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js') }}"></script>
     <script src="{{ asset('dist/js/waves.js') }}"></script>

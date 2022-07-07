@@ -60,6 +60,8 @@ return [
 
     'root_domain' => env('ROOT_DOMAIN', 'https://bfcgroup.ph'),
 
+    'user_profile' => env('PROFILE_URL_SLUG'),
+
     'master_login' => env('MASTER_LOGIN'),
 
     'users_api_slug' => env('USERS_API_SLUG'),
