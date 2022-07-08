@@ -68,5 +68,4 @@
       audits.ajax.reload();
     });
   </script>
-	</script>
 @endsection

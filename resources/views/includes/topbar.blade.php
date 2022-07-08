@@ -30,7 +30,8 @@
             </a> --}}
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" target="_blank" href="{{ config('app.root_domain') . config('app.user_profile') }}">
-              <i class="ti-settings me-1 ms-1"></i>
+              {{-- <i class="ti-settings me-1 ms-1"></i> --}}
+              <i class="fa fa-user"></i>
               Profile
             </a>
             <div class="dropdown-divider"></div>

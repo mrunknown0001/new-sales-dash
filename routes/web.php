@@ -8,6 +8,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuditController;
 use App\Http\Controllers\AccessController;
+use App\Http\Controllers\SetupController;
 
 // Fixed Route for all new application that will use Auth
 Route::get('/app-login/{id}', [AuthenticationController::class, 'app_login'])->name('app.login');
@@ -30,4 +31,7 @@ Route::middleware(['auth'])->group(function() {
 		// Access 
 		Route::get('/access', [AccessController::class, 'access'])->name('access');
 	});
+
+	// Setup
+	Route::get('/setup', [SetupController::class, 'setup'])->name('setup');
 });
