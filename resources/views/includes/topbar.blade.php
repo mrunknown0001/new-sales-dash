@@ -2,7 +2,7 @@
   <nav class="navbar top-navbar navbar-expand-md navbar-dark">
     <div class="navbar-header" data-logobg="skin5">
       <a class="navbar-brand" href="{{ route('dash') }}">
-        <b class="logo-icon ps-2">BGC</b>
+        <b class="logo-icon ps-2">{{ __('BGC') }}</b>
         <span class="logo-text">
           <img src="{{ asset('assets/images/bgc.png') }}" alt="dashboard" class="light-logo" />
         </span>
@@ -32,12 +32,12 @@
             <a class="dropdown-item" target="_blank" href="{{ config('app.root_domain') . config('app.user_profile') }}">
               {{-- <i class="ti-settings me-1 ms-1"></i> --}}
               <i class="fa fa-user"></i>
-              Profile
+              {{ __('Profile') }}
             </a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="{{ route('logout') }}">
               <i class="fa fa-power-off me-1 ms-1"></i>
-              Logout
+              {{ __('Logout') }}
             </a>
           </ul>
         </li>

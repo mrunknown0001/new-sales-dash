@@ -1,7 +1,7 @@
 @extends('layouts.guest')
 
 @section('title')
-	Error
+	{{ __('Error') }}
 @endsection
 
 @section('content')

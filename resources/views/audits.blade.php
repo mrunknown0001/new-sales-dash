@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-	Audit Trail
+	{{ __('Audit Trail') }}
 @endsection
 
 @section('head-action')
@@ -18,13 +18,13 @@
       <table id="audits" class="table cell-border compact table-striped hover display nowrap" width="100%">
         <thead>
           <tr>
-            <th scope="col">ID</th>
-            <th scope="col">User</th>
-            <th scope="col">Table</th>
-            <th scope="col">Action</th>
-            <th scope="col">New Value</th>
-            <th scope="col">Old Value</th>
-            <th scope="col">View</th>
+            <th scope="col">{{ __('ID') }}</th>
+            <th scope="col">{{ __('User') }}</th>
+            <th scope="col">{{ __('Table') }}</th>
+            <th scope="col">{{ __('Action') }}</th>
+            <th scope="col">{{ __('New Value') }}</th>
+            <th scope="col">{{ __('Old Value') }}</th>
+            <th scope="col">{{ __('View') }}</th>
           </tr>
         </thead>
       </table>

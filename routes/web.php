@@ -30,6 +30,7 @@ Route::middleware(['auth'])->group(function() {
 		Route::get('/user/grant/{id?}/{role?}', [UserController::class, 'grantAccess'])->name('user.grant.access');
 		// Access 
 		Route::get('/access', [AccessController::class, 'access'])->name('access');
+		Route::get('/access/{code?}', [AccessController::class, 'farmAccess'])->name('access.farm');
 	});
 
 	// Setup

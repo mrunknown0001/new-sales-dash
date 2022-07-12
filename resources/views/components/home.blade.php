@@ -1,3 +1,3 @@
 <div>
-	Home
+	{{ __('Home') }}
 </div>

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-	{{ __('Access') }}
+	{{ __('Access to') }} {{ $farm }}
 @endsection
 
 @section('styles')

@@ -31,7 +31,7 @@
     <div class="page-wrapper">
       @include('includes.breadcrumb')
       <div class="container-fluid">
-        <h3>Content</h3>
+        <h3>{{ __('Content') }}</h3>
       </div>
       @include('includes.footer')
     </div>

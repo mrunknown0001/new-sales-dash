@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-	Setup
+	{{ __('Setup') }}
 @endsection
 
 @section('styles')

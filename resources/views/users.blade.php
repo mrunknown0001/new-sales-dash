@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-	Users
+	{{ __('Users') }}
 @endsection
 
 @section('head-action')
@@ -18,12 +18,12 @@
 			<table id="users" class="table cell-border compact table-striped hover display nowrap" width="100%">
 				<thead>
 					<tr>
-            <th scope="col">ID</th>
-						<th scope="col">Last Name</th>
-            <th scope="col">First Name</th>
-            <th scope="col">System Access</th>
-            <th scope="col">Role</th>
-						<th scope="col">Action</th>
+            <th scope="col">{{ __('ID') }}</th>
+						<th scope="col">{{ __('Last Name') }}</th>
+            <th scope="col">{{ __('First Name') }}</th>
+            <th scope="col">{{ __('System Access') }}</th>
+            <th scope="col">{{ __('Role') }}</th>
+						<th scope="col">{{ __('Action') }}</th>
 					</tr>
 				</thead>
 			</table>
