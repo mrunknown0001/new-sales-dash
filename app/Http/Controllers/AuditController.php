@@ -38,7 +38,7 @@ class AuditController extends Controller
                         'table' => strtoupper($a->table),
                         'new_value' => $a->new_value,
                         'old_value' => $a->old_value,
-                        'view' => '<button class="btn btn-success btn-sm">VIEW</button>'
+                        'view' => '<button class="btn btn-success btn-sm" disabled>N/A</button>'
                     ]);
                 }
             }
