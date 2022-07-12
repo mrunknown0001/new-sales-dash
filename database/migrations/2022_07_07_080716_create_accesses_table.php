@@ -16,7 +16,8 @@ return new class extends Migration
         Schema::create('accesses', function (Blueprint $table) {
             $table->id();
             $table->string('farm')->nullable();
-            $table->
+            $table->string('module_name')->nullable();
+            $table->string('action')->nullable();
             $table->timestamps();
         });
     }

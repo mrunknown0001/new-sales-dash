@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use App\Models\User;
+use App\Models\Access;
 
 class GeneralController extends Controller
 {
@@ -75,5 +76,18 @@ class GeneralController extends Controller
         $data = json_decode($response);
 
         return $data->first_name . ' ' . $data->last_name;
+    }
+
+
+
+
+    /**
+     * Check Module Access
+     * @param   $module Module Name
+     * @return   True or False if it has a access to specific module
+     */
+    public static function checkModuleAccess($module)
+    {
+
     }
 }

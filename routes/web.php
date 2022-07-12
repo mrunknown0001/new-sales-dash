@@ -31,6 +31,7 @@ Route::middleware(['auth'])->group(function() {
 		// Access 
 		Route::get('/access', [AccessController::class, 'access'])->name('access');
 		Route::get('/access/{code?}', [AccessController::class, 'farmAccess'])->name('access.farm');
+		Route::get('/access/set/{id?}/{fullname?}/{code?}', [AccessController::class, 'setUserAccess'])->name('access.module.set');
 	});
 
 	// Setup

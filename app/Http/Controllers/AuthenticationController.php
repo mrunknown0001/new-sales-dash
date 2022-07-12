@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Crypt;
 use App\Models\User;
 use Auth;
 use App\Http\Controllers\GeneralController as GC;
+use App\Http\Controllers\AuditController as AC;
 
 class AuthenticationController extends Controller
 {
@@ -32,6 +33,13 @@ class AuthenticationController extends Controller
     		if(Auth::loginUsingId($user->id)) {
                 // Login Success
                 // Sessions For Current Users
+                $log_entry = [
+                    'Login',
+                    '',
+                    '',
+                    '',
+                ];
+                AC::logEntry($log_entry);
     			return redirect()->route('dash');
     		}
     		else {
