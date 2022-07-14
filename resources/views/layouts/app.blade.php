@@ -11,6 +11,7 @@
     {{-- Fonts --}}
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
     <link href="{{ asset('dist/css/style.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
     {{-- Styles --}}
     @yield('styles')
     @include('includes.assets.fontawesome')
@@ -52,6 +53,15 @@
           success: function(response){
             $("#profile_photo").attr("src",response['profile_photo_url']);
           }
+        });
+
+        $("#farm_selector").change(function() {
+          if(this.value == '') {
+            this.value = "{{ session()->get('farm') }}"
+            return false;
+          }
+          var selector_url = "{{ route('selector') }}";
+          window.location.replace(selector_url + "/" + this.value);
         });
       </script>
     @endif

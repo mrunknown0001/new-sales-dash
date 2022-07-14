@@ -16,6 +16,7 @@
 					<tr>
             <th scope="col">{{ __('ID') }}</th>
 						<th scope="col">{{ __('Full Name') }}</th>
+						<th scope="col">{{ __('Access') }}</th>
 						<th scope="col">{{ __('Action') }}</th>
 					</tr>
 				</thead>
@@ -34,13 +35,14 @@
         serverSide: true,
         scrollX: true,
         columnDefs: [
-          { className: "dt-center", targets: [ 2 ] }
+          { className: "dt-center", targets: [ 3 ] }
         ],
 
         ajax: "{{ route('access.farm', ['code' => $farm]) }}",
         columns: [
           {data: 'id', name: 'id'},
           {data: 'full_name', name: 'full_name'},
+          {data: 'access', name: 'access'},
           {data: 'action', name: 'action', orderable: false, searchable: false},
         ],
         pagingType: 'full_numbers',
@@ -58,7 +60,7 @@
 	      e.preventDefault();
 	      var id = $(this).data('id');
 	      var name = $(this).data('name');
-	      var code = {{ $farm }};
+	      var code = "{{ $farm }}";
 	      var title = "Set Access to User?";
 	      var html_text = "<p>Are you sure you want to set access to <b>" + name + "</b>?</p>";
 	      Swal.fire({

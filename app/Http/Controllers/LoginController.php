@@ -28,6 +28,7 @@ class LoginController extends Controller
             ];
             AC::logEntry($log_entry);
 	    	Auth::logout();
+            session()->flush();
         }
     	return view('logout');
     }

@@ -1,0 +1,7 @@
+.list-inline-item {
+	padding-right: 15px;
+}
+
+select, select.form-control {
+	border-radius: 0px;
+}

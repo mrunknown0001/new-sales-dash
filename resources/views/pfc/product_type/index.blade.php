@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-	{{ __($code . ' Dashboard') }}
+	{{ __('PFC Product Type') }}
 @endsection
 
 @section('content')

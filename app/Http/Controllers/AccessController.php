@@ -8,6 +8,7 @@ use DataTables;
 use App\Http\Controllers\GeneralController as GC;
 use App\Http\Controllers\AuditController as AC;
 use App\Models\User;
+use App\Models\Access;
 
 class AccessController extends Controller
 {
@@ -34,6 +35,7 @@ class AccessController extends Controller
                     $collect->push([
                         'id' => $u->id,
                         'full_name' => $name,
+                        'access' => $this->accessLists($u->id, $code),
                         'action' => '<button id="set-access" data-id="' . $u->id . '" data-name="' . $name . '" class="btn btn-primary btn-sm"><i class="fa fa-check"></i> Set Access</button>'
                     ]);
                 }
@@ -59,6 +61,33 @@ class AccessController extends Controller
 
 
 
+
+    /**
+     * checkAccess
+     * @param   $id User ID, $farm Dashboard, $access Ruled Access
+     * @return   true or false
+     */
+    public static function checkAccess($id, $farm, $acc)
+    {
+        $access = Access::where('user_id', 1)
+                    ->where('farm', $farm)
+                    ->first();
+
+        if(empty($access) || $access == null) {
+            return false;
+        }
+
+        $str = strpos($access->access, ",".$acc);
+
+        if($str === false) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+
     /**
      * Set User Access to Specific Module to Specific Farm
      * @param   $id User ID, $fullname Full Name of User, $code Farm Code [SWINE, PFC, BDL]
@@ -66,6 +95,56 @@ class AccessController extends Controller
      */
     public function setUserAccess($id, $fullname, $code)
     {
-        return view('access.access-set', [$id, $fullname, $code]);
+        return view('access.access-set', ['id' => $id, 'fullname' => $fullname, 'code' => $code]);
+    }
+
+
+    /**
+     * [accessLists description]
+     * @param  [type] $id [description]
+     * @return [type]     [description]
+     */
+    private function accessLists($id, $farm)
+    {
+        $access = Access::where('user_id', $id)
+                        ->where('farm', $farm)
+                        ->first();
+
+        if(empty($access) || $access == null) {
+            return 'NULL';
+        }
+
+        $str = substr($access->access, 1);
+
+        if($str == '') {
+            return "NULL";
+        }
+
+        return strtoupper($str);
+    }
+
+    /**
+     * Sample User Check
+     * @param  Int $id  User ID
+     * @param  String $acc String Module Description
+     * @return String      If has or no Description
+     */
+    public function acc($id, $acc)
+    {
+        $access = Access::where('user_id', 1)
+                    ->first();
+
+        if(empty($access) || $access == null) {
+            return 'no access';
+        }
+
+        $str = strpos($access->access, ",".$acc);
+
+        if($str === false) {
+            return 'no access';
+        }
+        else {
+            return 'has access';
+        }
     }
 }

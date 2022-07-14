@@ -6,9 +6,36 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use App\Models\User;
 use App\Models\Access;
+use Auth;
 
 class GeneralController extends Controller
 {
+
+    /**
+     * Selector Method use to select dashboard/farm
+     */
+    public function selector($code = NULL)
+    {
+        // Set in session if not exist, if exist, destroy then set
+        session()->forget('farm');
+        session(['farm' => $code]);
+        // Check user if has access to specific farm
+
+        // redirect to specific route
+        if($code == 'PFC') {
+            return redirect()->route('pfc.dashboard');
+        }
+        else if($code == 'BDL') {
+            return redirect()->route('bdl.dashboard');
+        }else if($code == 'SWINE') {
+            return redirect()->route('swine.dashboard');
+        }
+        else {
+            return abort(404);
+        }
+    }
+
+
 	/**
 	 * Decrypt String using unified encryption key
 	 * @param  string $id - any valid encrypted id 
@@ -82,12 +109,31 @@ class GeneralController extends Controller
 
 
     /**
-     * Check Module Access
+     * Check Module Access 
      * @param   $module Module Name
      * @return   True or False if it has a access to specific module
      */
-    public static function checkModuleAccess($module)
+    public static function checkModuleAccess($module, $farm)
     {
+        if(Auth::user()->id == 1) {
+            return true;
+        }
 
+        $access = Access::where('user_id', Auth::user()->id)
+                    ->where('farm', $farm)
+                    ->first();
+
+        if(empty($access) || $access == null) {
+            return false;
+        }
+
+        $str = strpos($access->access, ",".$module);
+
+        if($str === false) {
+            return false;
+        }
+        else {
+            return true;
+        }
     }
 }
