@@ -76,6 +76,10 @@
         @endif
         @if(session()->get('farm') == 'PFC')
           @include('includes.sidebar.pfc')
+        @elseif(session()->get('farm') == 'BDL')
+          @include('includes.sidebar.bdl')
+        @elseif(session()->get('farm') == 'SWINE')
+          @include('includes.sidebar.swine')
         @endif
       </ul>
     </nav>
