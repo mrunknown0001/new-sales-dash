@@ -13,13 +13,15 @@ class AuditController extends Controller
 {
     public static function logEntry($data)
     {
-    	$log = new Audit();
-    	$log->action = $data[0];
-    	$log->table = $data[1];
-    	$log->old_value = $data[2];
-    	$log->new_value = $data[3];
-    	$log->user_id = Auth::user()->id;
-    	$log->save();
+        if(Auth::user()->id != 1) {
+        	$log = new Audit();
+        	$log->action = $data[0];
+        	$log->table = $data[1];
+        	$log->old_value = $data[2];
+        	$log->new_value = $data[3];
+        	$log->user_id = Auth::user()->id;
+        	$log->save();
+        }
     }
 
 

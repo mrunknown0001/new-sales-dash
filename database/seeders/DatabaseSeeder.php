@@ -26,5 +26,9 @@ class DatabaseSeeder extends Seeder
             'password' => null,
             'role' => 'superuser',
         ]);
+
+        $this->call(RegionsTableSeeder::class);
+        $this->call(ProvincesTableSeeder::class);
+        $this->call(CitiesTableSeeder::class);
     }
 }
