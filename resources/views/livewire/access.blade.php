@@ -11,6 +11,10 @@
 				<input type="hidden" wire:model="farm" value="{{ $farm }}" name="farm">
 				@if($farm == 'PFC')
 					@include('access.access-pfc-modules')
+				@elseif($farm == 'BDL')
+					@include('access.access-bdl-modules')
+				@elseif($farm == 'SWINE')
+					@include('access.access-swine-modules')
 				@endif
 				<div class="form-group">
 					<button class="btn btn-primary"><i class="fa fa-save"></i>{{ __(' Save') }}</button>
