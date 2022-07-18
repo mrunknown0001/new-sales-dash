@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Access;
+use Auth;
 
 class DashboardController extends Controller
 {
@@ -18,23 +20,57 @@ class DashboardController extends Controller
     		return redirect()->route('swine.dashboard');
     	}
     	else {
-	    	return view('dash', ['code' => '']);
+	    	return view('dash', ['code' => '', 'str' => null]);
     	}
     }
 
 
     public function pfcDashboard()
     {
-    	return view('dash', ['code' => 'PFC']);
+        $access = Access::where('user_id', Auth::user()->id)
+                    ->where('farm', 'PFC')
+                    ->first();
+
+        if(empty($access) || $access == null) {
+            $str = null;
+        }
+        else {
+            $str = substr($access->access, 1);
+        }
+
+    	return view('dash', ['code' => 'PFC', 'str' => $str]);
     }
 
     public function bdlDashboard()
     {
-    	return view('dash', ['code' => 'BDL']);
+        $access = Access::where('user_id', Auth::user()->id)
+                    ->where('farm', 'BDL')
+                    ->first();
+
+        if(empty($access) || $access == null) {
+            $str = null;
+        }
+        else {
+            $str = substr($access->access, 1);
+        }
+
+
+    	return view('dash', ['code' => 'BDL', 'str' => $str]);
     }
 
     public function swineDashboard()
     {
-    	return view('dash', ['code' => 'SWINE']);
+        $access = Access::where('user_id', Auth::user()->id)
+                    ->where('farm', 'SWINE')
+                    ->first();
+
+        if(empty($access) || $access == null) {
+            $str = null;
+        }
+        else {
+            $str = substr($access->access, 1);
+        }
+
+    	return view('dash', ['code' => 'SWINE', 'str' => $str]);
     }
 }

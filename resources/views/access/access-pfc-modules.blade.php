@@ -22,6 +22,15 @@
 	</ul>
 </div>
 <div class="form-group">
+	<h4>{{ __('Sales:') }}</h4>
+	<ul class="list-inline">
+		<li class="list-inline-item"><input type="checkbox" {{ \App\Http\Controllers\AccessController::checkAccess($user_id, $farm, 'sales_module') ? 'checked' : '' }} value="sales_module" name="access[]" wire:model="access" id="sales_module"> <label for="sales_module">{{ __('Module') }}</label></li>
+		<li class="list-inline-item"><input type="checkbox" {{ \App\Http\Controllers\AccessController::checkAccess($user_id, $farm, 'sales_add') ? 'checked' : '' }} value="sales_add" name="access[]" wire:model="access" id="sales_add"> <label for="sales_add">{{ __('Add') }}</label></li>
+		<li class="list-inline-item"><input type="checkbox" {{ \App\Http\Controllers\AccessController::checkAccess($user_id, $farm, 'sales_edit') ? 'checked' : '' }} value="sales_edit" name="access[]" wire:model="access" id="sales_edit"> <label for="sales_edit">{{ __('Edit') }}</label></li>
+		<li class="list-inline-item"><input type="checkbox" {{ \App\Http\Controllers\AccessController::checkAccess($user_id, $farm, 'sales_delete') ? 'checked' : '' }} value="sales_delete" name="access[]" wire:model="access" id="sales_delete"> <label for="sales_delete">{{ __('Delete') }}</label></li>
+	</ul>
+</div>
+<div class="form-group">
 	<h4>{{ __('Region') }}:</h4>
 	<ul class="list-inline">
 		<li class="list-inline-item"><input type="checkbox" {{ \App\Http\Controllers\AccessController::checkAccess($user_id, $farm, 'region_module') ? 'checked' : '' }} value="region_module" name="access[]" wire:model="access" id="region_module"> <label for="region_module">{{ __('Module') }}</label></li>
@@ -91,14 +100,5 @@
 		<li class="list-inline-item"><input type="checkbox" {{ \App\Http\Controllers\AccessController::checkAccess($user_id, $farm, 'product_quality_type_add') ? 'checked' : '' }} value="product_quality_type_add" name="access[]" wire:model="access" id="product_quality_type_add"> <label for="product_quality_type_add">{{ __('Add') }}</label></li>
 		<li class="list-inline-item"><input type="checkbox" {{ \App\Http\Controllers\AccessController::checkAccess($user_id, $farm, 'product_quality_type_edit') ? 'checked' : '' }} value="product_quality_type_edit" name="access[]" wire:model="access" id="product_quality_type_edit"> <label for="product_quality_type_edit">{{ __('Edit') }}</label></li>
 		<li class="list-inline-item"><input type="checkbox" {{ \App\Http\Controllers\AccessController::checkAccess($user_id, $farm, 'product_quality_type_delete') ? 'checked' : '' }} value="product_quality_type_delete" name="access[]" wire:model="access" id="product_quality_type_delete"> <label for="product_quality_type_delete">{{ __('Delete') }}</label></li>
-	</ul>
-</div>
-<div class="form-group">
-	<h4>{{ __('Sales:') }}</h4>
-	<ul class="list-inline">
-		<li class="list-inline-item"><input type="checkbox" {{ \App\Http\Controllers\AccessController::checkAccess($user_id, $farm, 'sales_module') ? 'checked' : '' }} value="sales_module" name="access[]" wire:model="access" id="sales_module"> <label for="sales_module">{{ __('Module') }}</label></li>
-		<li class="list-inline-item"><input type="checkbox" {{ \App\Http\Controllers\AccessController::checkAccess($user_id, $farm, 'sales_add') ? 'checked' : '' }} value="sales_add" name="access[]" wire:model="access" id="sales_add"> <label for="sales_add">{{ __('Add') }}</label></li>
-		<li class="list-inline-item"><input type="checkbox" {{ \App\Http\Controllers\AccessController::checkAccess($user_id, $farm, 'sales_edit') ? 'checked' : '' }} value="sales_edit" name="access[]" wire:model="access" id="sales_edit"> <label for="sales_edit">{{ __('Edit') }}</label></li>
-		<li class="list-inline-item"><input type="checkbox" {{ \App\Http\Controllers\AccessController::checkAccess($user_id, $farm, 'sales_delete') ? 'checked' : '' }} value="sales_delete" name="access[]" wire:model="access" id="sales_delete"> <label for="sales_delete">{{ __('Delete') }}</label></li>
 	</ul>
 </div>

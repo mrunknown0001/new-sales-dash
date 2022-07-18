@@ -1,8 +1,8 @@
 @inject('gc', '\App\Http\Controllers\GeneralController')
 
 @if($gc->checkModuleAccess('sales_module', 'BDL'))
-	<li class="sidebar-item">
-		<a class="sidebar-link waves-effect waves-dark sidebar-link " href="#" aria-expanded="false">
+	<li class="sidebar-item {{ url()->current() == route('bdl.sales') ? 'selected' : '' }}">
+		<a class="sidebar-link waves-effect waves-dark sidebar-link {{ url()->current() == route('bdl.sales') ? 'active' : '' }}" href="{{ route('bdl.sales') }}" aria-expanded="false">
 		  <i class="fa fa-receipt"></i>
 		  <span class="hide-menu">{{ __('Sales') }}</span>
 		</a>

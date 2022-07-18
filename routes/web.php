@@ -19,6 +19,7 @@ use App\Http\Controllers\PfcProductClassificationController;
 use App\Http\Controllers\PfcProductController;
 use App\Http\Controllers\PfcProductQualityTypeController;
 use App\Http\Controllers\PfcProductTypeController;
+use App\Http\Controllers\BdlSaleController;
 
 // Fixed Route for all new application that will use Auth
 Route::get('/app-login/{id}', [AuthenticationController::class, 'app_login'])->name('app.login');
@@ -74,6 +75,8 @@ Route::middleware(['auth'])->group(function() {
 
 	Route::group(['prefix' => 'BDL'], function() {
 		Route::get('/', [DashboardController::class, 'bdlDashboard'])->name('bdl.dashboard');
+
+		Route::get('/sales', [BdlSaleController::class, 'index'])->name('bdl.sales');
 	});
 
 	Route::group(['prefix' => 'SWINE'], function() {

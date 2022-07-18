@@ -39,7 +39,9 @@ class Access extends Component
     {
     	$this->validate();
 
-    	$u_access = MAccess::where('user_id', $this->user_id)->first();
+    	$u_access = MAccess::where('user_id', $this->user_id)
+                        ->where('farm', $this->farm)
+                        ->first();
 
         if($u_access == null) {
             $u_access = new MAccess();
