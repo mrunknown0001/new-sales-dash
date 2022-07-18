@@ -10,7 +10,7 @@ class BdlSaleController extends Controller
 	private $farm = 'BDL';
 
     /**
-     * PFC Customer Page
+     * BDL Sales Page
      */
     public function index()
     {
