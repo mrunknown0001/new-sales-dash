@@ -27,6 +27,13 @@ use App\Http\Controllers\BdlTypeOfAccountController;
 use App\Http\Controllers\BdlProductController;
 use App\Http\Controllers\BdlProductTypeController;
 use App\Http\Controllers\BdlBreedController;
+use App\Http\Controllers\SwineSaleController;
+use App\Http\Controllers\SwineFarmController;
+use App\Http\Controllers\SwineDepartmentController;
+use App\Http\Controllers\SwineProductCategoryController;
+use App\Http\Controllers\SwineCustomerController;
+use App\Http\Controllers\SwineSaleStatusController;
+use App\Http\Controllers\SwineClassificationController;
 
 // Fixed Route for all new application that will use Auth
 Route::get('/app-login/{id}', [AuthenticationController::class, 'app_login'])->name('app.login');
@@ -102,6 +109,20 @@ Route::middleware(['auth'])->group(function() {
 
 	Route::group(['prefix' => 'SWINE'], function() {
 		Route::get('/', [DashboardController::class, 'swineDashboard'])->name('swine.dashboard');
+
+		Route::get('/sales', [SwineSaleController::class, 'index'])->name('swine.sales');
+
+		Route::get('/farm', [SwineFarmController::class, 'index'])->name('swine.farm');
+
+		Route::get('/department', [SwineDepartmentController::class, 'index'])->name('swine.department');
+
+		Route::get('/product-category', [SwineProductCategoryController::class, 'index'])->name('swine.product.category');
+
+		Route::get('/customer', [SwineCustomerController::class, 'index'])->name('swine.customer');
+
+		Route::get('/sale-status', [SwineSaleStatusController::class, 'index'])->name('swine.sale.status');
+
+		Route::get('/classification', [SwineClassificationController::class, 'index'])->name('swine.classification');
 	});
 
 
