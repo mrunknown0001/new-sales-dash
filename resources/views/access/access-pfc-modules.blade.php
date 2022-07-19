@@ -1,3 +1,5 @@
+@inject('access', '\App\Http\Controllers\AccessController')
+
 <div class="form-group">
 	@if($errors->has('access'))
 		<p class="text-danger">{{ $errors->first('access') }}</p>
@@ -8,6 +10,12 @@
 	@if($errors->has('farm'))
 		<p class="text-danger">{{ $errors->first('farm') }}</p>
 	@endif
+</div>
+<div class="form-group">
+	<h4>{{ __('Charts') }}:</h4>
+	<ul class="list-inline">
+		<li class="list-inline-item"><input type="checkbox" {{ $access->checkAccess($user_id, $farm, 'charts_module') ? 'checked' : '' }} value="charts_module" name="access[]" wire:model="access" id="charts_module"> <label for="charts_module">{{ __('Module') }}</label></li>
+	</ul>
 </div>
 <div class="form-group">
 	<h4>{{ __('Charts') }}:</h4>

@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\User;
 use App\Models\Access as MAccess;
+use App\Http\Controllers\GeneralControler as GC;
 
 
 class Access extends Component

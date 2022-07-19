@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('region_name')->nullable();
             $table->string('region_code')->nullable();
             $table->string('region_description')->nullable();
+            $table->boolean('is_active')->default(1);
+            $table->boolean('is_deleted')->default(0);
             $table->timestamps();
         });
     }

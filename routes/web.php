@@ -69,6 +69,9 @@ Route::middleware(['auth'])->group(function() {
 		Route::get('/sales', [PfcSalesController::class, 'index'])->name('pfc.sales');
 
 		Route::get('/region', [PfcRegionController::class, 'index'])->name('pfc.region');
+		Route::get('/region-add', [PfcRegionController::class, 'add'])->name('pfc.region.add');
+		Route::get('/region-edit/{id?}', [PfcRegionController::class, 'edit'])->name('pfc.region.edit');
+		Route::post('/region-delete', [PfcRegionController::class, 'delete'])->name('pfc.region.delete');
 
 		Route::get('/location', [PfcLocationController::class, 'index'])->name('pfc.location');
 

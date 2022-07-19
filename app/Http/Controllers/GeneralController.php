@@ -55,6 +55,19 @@ class GeneralController extends Controller
 
 
     /**
+     * Encrypt String using unified encryption key
+     * @param  string $string - string 
+     * @return string $str - encrypted value of parameter
+     */
+    public static function encryptString($string)
+    {
+        $str = Crypt::encryptString($string);
+
+        return $str;
+    }
+
+
+    /**
      * Check User if Exists or Has access to the system
      * @param   $id User ID
      * @return   True or False
