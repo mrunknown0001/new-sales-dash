@@ -74,6 +74,9 @@ Route::middleware(['auth'])->group(function() {
 		Route::post('/region-delete', [PfcRegionController::class, 'delete'])->name('pfc.region.delete');
 
 		Route::get('/location', [PfcLocationController::class, 'index'])->name('pfc.location');
+		Route::get('/location-add', [PfcLocationController::class, 'add'])->name('pfc.location.add');
+		Route::get('/location-edit/{id?}', [PfcLocationController::class, 'edit'])->name('pfc.location.edit');
+		Route::post('/location-delete', [PfcLocationController::class, 'delete'])->name('pfc.location.delete');
 
 		Route::get('/customer-type', [PfcCustomerTypeController::class, 'index'])->name('pfc.customer.type');
 

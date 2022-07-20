@@ -1,5 +1,6 @@
-@extends('layouts.app')
 @inject('gc', '\App\Http\Controllers\GeneralController')
+
+@extends('layouts.app')
 
 @section('title')
 	{{ __('PFC Region') }}
