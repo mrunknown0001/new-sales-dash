@@ -24,6 +24,9 @@
 	</div>
 	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	<script>
+		window.addEventListener('load', (event) => {
+		  
+		});
 		window.addEventListener('access-set', event => {
       Swal.fire({
         title: event.detail.title,
@@ -35,5 +38,6 @@
         confirmButtonText: 'Close'
       });
 		});
+
 	</script>
 </div>

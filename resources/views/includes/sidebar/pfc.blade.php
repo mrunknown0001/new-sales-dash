@@ -65,7 +65,7 @@
 	</li>
 @endif
 @if($gc->checkModuleAccess('product_quality_type_module', 'PFC'))
-	<li class="sidebar-item {{ url()->current() == route('pfc.product.quality.type') ? 'selected' : '' }}"">
+	<li class="sidebar-item {{ url()->current() == route('pfc.product.quality.type') ? 'selected' : '' }}">
 		<a class="sidebar-link waves-effect waves-dark sidebar-link {{ url()->current() == route('pfc.product.quality.type') ? 'active' : '' }}" href="{{ route('pfc.product.quality.type') }}" aria-expanded="false">
 		  <i class="fa fa-file"></i>
 		  <span class="hide-menu">{{ __('Product Quality Type') }}</span>

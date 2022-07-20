@@ -36,6 +36,12 @@ class Access extends Component
     }
 
 
+
+    public function init()
+    {
+        $this->dispatchBrowserEvent('access-loaded', []);
+    }
+
     public function save()
     {
     	$this->validate();
