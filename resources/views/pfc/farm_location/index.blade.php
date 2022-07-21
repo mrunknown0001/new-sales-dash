@@ -3,12 +3,12 @@
 @extends('layouts.app')
 
 @section('title')
-	{{ __('PFC Region') }}
+	{{ __('PFC Farm Location') }}
 @endsection
 
 @section('head-action')
-	@if($gc->checkModuleAccess('region_add', 'PFC'))
-		<a href="{{ route('pfc.region.add') }}" class="btn btn-link text-decoration-none">{{ __('ADD') }}</a>
+	@if($gc->checkModuleAccess('location_add', 'PFC'))
+		<a href="{{ route('pfc.location.add') }}" class="btn btn-link text-decoration-none">{{ __('ADD') }}</a>
 	@endif
   <button class="btn btn-link text-decoration-none" id="refresh"><i class="fa fa-sync"></i></button>
 @endsection
@@ -20,12 +20,12 @@
 @section('content')
   <div class="row">
     <div class="col-md-12">
-      <table id="regions" class="table cell-border compact table-striped hover display nowrap" width="100%">
+      <table id="locations" class="table cell-border compact table-striped hover display nowrap" width="100%">
         <thead>
           <tr>
-            {{-- <th scope="col">{{ __('ID') }}</th> --}}
-            <th scope="col">{{ __('Region Name') }}</th>
-            <th scope="col">{{ __('Region Code') }}</th>
+            <th scope="col">{{ __('Region') }}</th>
+            <th scope="col">{{ __('Location Name') }}</th>
+            <th scope="col">{{ __('Location Code') }}</th>
             <th scope="col">{{ __('Action') }}</th>
           </tr>
         </thead>
@@ -39,7 +39,7 @@
 	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script>
     $(document).ready(function () {
-      let regions = $('#regions').DataTable({
+      let locations = $('#locations').DataTable({
         processing: true,
         serverSide: true,
         scrollX: true,
@@ -47,11 +47,11 @@
           { className: "dt-center", targets: [ 0, 1, 2 ] }
         ],
 
-        ajax: "{{ route('pfc.region') }}",
+        ajax: "{{ route('pfc.location') }}",
         columns: [
-          // {data: 'id', name: 'id'},
-          {data: 'region_name', name: 'region_name'},
-          {data: 'region_code', name: 'region_code'},
+          {data: 'region', name: 'region'},
+          {data: 'location_name', name: 'location_name'},
+          {data: 'location_code', name: 'location_code'},
           {data: 'action', name: 'action', orderable: false, searchable: false},
         ],
         pagingType: 'full_numbers',
@@ -64,8 +64,8 @@
 
 
     $(document).on('click', '#refresh', function(e) {
-      var regions = $('#regions').DataTable();
-      regions.ajax.reload();
+      var locations = $('#locations').DataTable();
+      locations.ajax.reload();
     });
 
 
@@ -73,7 +73,7 @@
       e.preventDefault();
       var id = $(this).data('id');
       var name = $(this).data('name');
-      var title = "Edit Region?";
+      var title = "Edit Location?";
       var html_text = "<p>Are you sure you want to edit <b>" + name + "</b>?</p>";
       Swal.fire({
         title: title,
@@ -86,7 +86,7 @@
       }).then((result) => {
         if (result.value) {
           {{-- Redirect to Edit/Update Page --}}
-          var update_url = "{{ route('pfc.region.edit') }}"
+          var update_url = "{{ route('pfc.location.edit') }}"
           window.location.replace(update_url + "/" + id);
         }
         else {
@@ -108,7 +108,7 @@
       e.preventDefault();
       var id = $(this).data('id');
       var name = $(this).data('name');
-      var title = "Delete Region?";
+      var title = "Delete Location?";
       var html_text = "<p>Are you sure you want to delete <b>" + name + "</b>?</p>";
       Swal.fire({
         title: title,
@@ -124,11 +124,11 @@
           $.ajax({
             type: "POST",
             data: {"_token": "{{ csrf_token() }}","id": id},
-            url: "{{ route('pfc.region.delete') }}",
+            url: "{{ route('pfc.location.delete') }}",
             success: function(data){
               if(data) {
                 Swal.fire({
-                  title: "Region Deleted",
+                  title: "Location Deleted",
                   text: "",
                   icon: "success",
                   showCancelButton: false,
@@ -136,8 +136,8 @@
                   cancelButtonColor: '#d33',
                   confirmButtonText: 'Close'
                 });
-                var regions = $('#regions').DataTable();
-                regions.ajax.reload();
+                var locations = $('#locations').DataTable();
+                locations.ajax.reload();
               }
               else {
                 Swal.fire({

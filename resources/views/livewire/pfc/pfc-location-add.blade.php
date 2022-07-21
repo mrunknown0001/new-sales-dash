@@ -8,7 +8,7 @@
           	@if(isset($regions))
           		<option value="">{{ __('Select Region...') }}</option>
           		@foreach($regions as $r)
-          			<option value="{{ $r->id }}">{{ $r->region_name }}</option>
+          			<option value="{{ $r->id }}">{{ $r->name . ' - ' . $r->code }}</option>
           		@endforeach
           	@else
           		<option value="">{{ __('NO REGION AVAILABLE') }}</option>

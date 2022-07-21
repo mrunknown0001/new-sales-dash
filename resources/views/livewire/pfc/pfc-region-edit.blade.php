@@ -3,24 +3,17 @@
 	<form wire:submit.prevent="update" autocomplete="off">
 		@csrf
 		<div class="mb-3">
-		  <label for="region_name" class="form-label required">Region Name</label>
-		  <input type="text" class="form-control {{ $errors->has('region.region_name') ? 'is-invalid' : '' }}" name="region_name" id="region_name" wire:model="region.region_name" placeholder="Region Name">
-		  @if($errors->has('region.region_name'))
-		    <p class="text-danger">{{ $errors->first('region.region_name') }}</p>
+		  <label for="name" class="form-label required">Region Name</label>
+		  <input type="text" class="form-control {{ $errors->has('region.name') ? 'is-invalid' : '' }}" name="name" id="name" wire:model="region.name" placeholder="Region Name">
+		  @if($errors->has('region.name'))
+		    <p class="text-danger">{{ $errors->first('region.name') }}</p>
 		  @endif
 		</div>
 		<div class="mb-3">
-		  <label for="region_code" class="form-label required">Region Code</label>
-		  <input type="text" class="form-control {{ $errors->has('region.region_code') ? 'is-invalid' : '' }}" name="region_code" id="region_code" wire:model="region.region_code" placeholder="Region Code">
-		  @if($errors->has('region.region_code'))
-		    <p class="text-danger">{{ $errors->first('region.region_code') }}</p>
-		  @endif
-		</div>
-		<div class="mb-3">
-		  <label for="region_description" class="form-label">Region Description</label>
-		  <input type="text" class="form-control {{ $errors->has('region.region_description') ? 'is-invalid' : '' }}" name="region_description" id="region_description" wire:model="region.region_description" placeholder="Region Description">
-		  @if($errors->has('region.region_description'))
-		    <p class="text-danger">{{ $errors->first('region.region_description') }}</p>
+		  <label for="code" class="form-label required">Region Code</label>
+		  <input type="text" class="form-control {{ $errors->has('region.code') ? 'is-invalid' : '' }}" name="code" id="code" wire:model="region.code" placeholder="Region Code">
+		  @if($errors->has('region.code'))
+		    <p class="text-danger">{{ $errors->first('region.code') }}</p>
 		  @endif
 		</div>
 		<div class="mb-3">

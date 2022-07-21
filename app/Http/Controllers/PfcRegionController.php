@@ -7,6 +7,7 @@ use App\Http\Controllers\GeneralController as GC;
 use App\Http\Controllers\AuditController as AC;
 use DataTables;
 use App\Models\PfcRegion;
+use App\Models\ApiRegion;
 
 class PfcRegionController extends Controller
 {
@@ -18,29 +19,33 @@ class PfcRegionController extends Controller
     public function index(Request $request)
     {
         if($request->ajax()) {
-            $region = PfcRegion::where('is_active', 1)
+            // $region = PfcRegion::where('is_active', 1)
+            //                 ->where('is_deleted', 0)
+            //                 ->get();
+            $region = ApiRegion::where('is_active', 1)
                             ->where('is_deleted', 0)
                             ->get();
+            
 
             $data = collect();
             if($region->count() > 0) {
                 foreach($region as $r) {
                     $action = "N/A";
                     if(GC::checkModuleAccess('region_edit', $this->farm)) {
-                        $action = ' <button id="edit" data-id="' . GC::encryptString($r->id) . '" data-name="' . strtoupper($r->region_name) . '" class="btn btn-success btn-sm"><i class="fa fa-edit"></i> Edit</button> ';
+                        $action = ' <button id="edit" data-id="' . GC::encryptString($r->id) . '" data-name="' . strtoupper($r->name) . '" class="btn btn-success btn-sm"><i class="fa fa-edit"></i> Edit</button> ';
                     }
                     if(GC::checkModuleAccess('region_delete', $this->farm)) {
                         if($action == "N/A") {
-                            $action = ' <button id="delete" data-name="' . strtoupper($r->region_name) . '" data-id="' . GC::encryptString($r->id) . '" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Delete</button> ';
+                            $action = ' <button id="delete" data-name="' . strtoupper($r->name) . '" data-id="' . GC::encryptString($r->id) . '" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Delete</button> ';
                         }
                         else {
-                            $action .= ' <button id="delete" data-name="' . strtoupper($r->region_name) . '" data-id="' . GC::encryptString($r->id) . '" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Delete</button> ';
+                            $action .= ' <button id="delete" data-name="' . strtoupper($r->name) . '" data-id="' . GC::encryptString($r->id) . '" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Delete</button> ';
                         }
                     }
                     $data->push([
-                        'id' => $r->id,
-                        'region_name' => strtoupper($r->region_name),
-                        'region_code' => strtoupper($r->region_code),
+                        // 'id' => $r->id,
+                        'region_name' => strtoupper($r->name),
+                        'region_code' => strtoupper($r->code),
                         'action' => $action,
                     ]);
                 }
@@ -80,7 +85,7 @@ class PfcRegionController extends Controller
     {
         if(GC::checkModuleAccess('region_edit', $this->farm)) {
             $id = GC::decryptString($id);
-            $region = PfcRegion::findorfail($id);
+            $region = ApiRegion::findorfail($id);
             return view('pfc.region.add-edit', ['action' => 'Edit', 'region' => $region]);
         }
         return abort(403);
@@ -94,7 +99,7 @@ class PfcRegionController extends Controller
     {
         if(GC::checkModuleAccess('region_delete', $this->farm)) {
             $id = GC::decryptString($request->id);
-            $region = PfcRegion::find($id);
+            $region = ApiRegion::find($id);
              $old_data = json_encode($region);
             $region->is_deleted = 1;
             if($region->save()) {

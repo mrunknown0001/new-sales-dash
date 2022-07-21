@@ -3,24 +3,17 @@
 	<form wire:submit.prevent="save" autocomplete="off">
 		@csrf
 		<div class="mb-3">
-		  <label for="region_name" class="form-label required">Region Name</label>
-		  <input type="text" class="form-control {{ $errors->has('region_name') ? 'is-invalid' : '' }}" name="region_name" id="region_name" wire:model="region_name" placeholder="Region Name">
-		  @if($errors->has('region_name'))
-		    <p class="text-danger">{{ $errors->first('region_name') }}</p>
+		  <label for="name" class="form-label required">Region Name</label>
+		  <input type="text" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" name="name" id="name" wire:model="name" placeholder="Region Name">
+		  @if($errors->has('name'))
+		    <p class="text-danger">{{ $errors->first('name') }}</p>
 		  @endif
 		</div>
 		<div class="mb-3">
-		  <label for="region_code" class="form-label required">Region Code</label>
-		  <input type="text" class="form-control {{ $errors->has('region_code') ? 'is-invalid' : '' }}" name="region_code" id="region_code" wire:model="region_code" placeholder="Region Code">
-		  @if($errors->has('region_code'))
-		    <p class="text-danger">{{ $errors->first('region_code') }}</p>
-		  @endif
-		</div>
-		<div class="mb-3">
-		  <label for="region_description" class="form-label">Region Description</label>
-		  <input type="text" class="form-control {{ $errors->has('region_description') ? 'is-invalid' : '' }}" name="region_description" id="region_description" wire:model="region_description" placeholder="Region Description">
-		  @if($errors->has('region_description'))
-		    <p class="text-danger">{{ $errors->first('region_description') }}</p>
+		  <label for="code" class="form-label required">Region Code</label>
+		  <input type="text" class="form-control {{ $errors->has('code') ? 'is-invalid' : '' }}" name="code" id="code" wire:model="code" placeholder="Region Code">
+		  @if($errors->has('code'))
+		    <p class="text-danger">{{ $errors->first('code') }}</p>
 		  @endif
 		</div>
 		<div class="mb-3">

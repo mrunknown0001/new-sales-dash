@@ -53,6 +53,6 @@ class DatabaseSeeder extends Seeder
         $this->call(BarangaysTableSeeder21::class);
         $this->call(BarangaysTableSeeder22::class);
         
-        $this->call(PfcRegionsTableSeeder::class);
+        $this->call(PfcLocationsTableSeeder::class);
     }
 }

@@ -23,7 +23,7 @@
       <table id="locations" class="table cell-border compact table-striped hover display nowrap" width="100%">
         <thead>
           <tr>
-            <th scope="col">{{ __('ID') }}</th>
+            <th scope="col">{{ __('Region') }}</th>
             <th scope="col">{{ __('Location Name') }}</th>
             <th scope="col">{{ __('Location Code') }}</th>
             <th scope="col">{{ __('Action') }}</th>
@@ -44,12 +44,12 @@
         serverSide: true,
         scrollX: true,
         columnDefs: [
-          { className: "dt-center", targets: [ 0, 1, 2, 3 ] }
+          { className: "dt-center", targets: [ 0, 1, 2 ] }
         ],
 
         ajax: "{{ route('pfc.location') }}",
         columns: [
-          {data: 'id', name: 'id'},
+          {data: 'region', name: 'region'},
           {data: 'location_name', name: 'location_name'},
           {data: 'location_code', name: 'location_code'},
           {data: 'action', name: 'action', orderable: false, searchable: false},

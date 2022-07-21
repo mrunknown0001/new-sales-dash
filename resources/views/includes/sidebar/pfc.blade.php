@@ -23,6 +23,18 @@
 		  <span class="hide-menu">{{ __('Location') }}</span>
 		</a>
 	</li>
+	<li class="sidebar-item {{ url()->current() == route('pfc.farm.location') ? 'selected' : '' }}">
+		<a class="sidebar-link waves-effect waves-dark sidebar-link {{ url()->current() == route('pfc.farm.location') ? 'active' : '' }}" href="{{ route('pfc.farm.location') }}" aria-expanded="false">
+		  <i class="fa fa-file"></i>
+		  <span class="hide-menu">{{ __('Farm Location') }}</span>
+		</a>
+	</li>
+	<li class="sidebar-item {{ url()->current() == route('pfc.egg.location') ? 'selected' : '' }}">
+		<a class="sidebar-link waves-effect waves-dark sidebar-link {{ url()->current() == route('pfc.egg.location') ? 'active' : '' }}" href="{{ route('pfc.egg.location') }}" aria-expanded="false">
+		  <i class="fa fa-file"></i>
+		  <span class="hide-menu">{{ __('Egg Location') }}</span>
+		</a>
+	</li>
 @endif
 @if($gc->checkModuleAccess('customer_type_module', 'PFC'))
 	<li class="sidebar-item {{ url()->current() == route('pfc.customer.type') ? 'selected' : '' }}">

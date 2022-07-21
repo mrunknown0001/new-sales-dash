@@ -7,10 +7,9 @@ use App\Http\Controllers\GeneralController as GC;
 use App\Http\Controllers\AuditController as AC;
 use DataTables;
 use App\Models\PfcLocation;
-use App\Models\PfcRegion;
 use App\Models\ApiRegion;
 
-class PfcLocationController extends Controller
+class PfcEggLocationController extends Controller
 {
 	private $farm = 'PFC';
 
@@ -53,65 +52,9 @@ class PfcLocationController extends Controller
         }
 
     	if(GC::checkModuleAccess('location_module', $this->farm)) {
-	    	return view('pfc.location.index');
+	    	return view('pfc.egg_location.index');
     	}
 
     	return abort(403);
     }
-
-
-
-     /**
-     * Region Add Page
-     * @return   Add Page or 403 Page
-     */
-    public function add()
-    {
-        if(GC::checkModuleAccess('location_add', $this->farm)) {
-            $region = ApiRegion::get(['id', 'name', 'code']);
-            return view('pfc.location.add-edit', ['action' => 'Add', 'regions' => $region]);
-        }
-        return abort(403);
-    }
-
-
-    /**
-     * Region Edit Page
-     * @return   Edit Page or 403 Page
-     */
-    public function edit($id)
-    {
-        if(GC::checkModuleAccess('location_edit', $this->farm)) {
-            $id = GC::decryptString($id);
-            $location = PfcLocation::findorfail($id);
-            $region = ApiRegion::get(['id', 'name', 'code']);
-            return view('pfc.location.add-edit', ['action' => 'Edit', 'location' => $location, 'regions' => $region]);
-        }
-        return abort(403);
-    }
-
-
-    /**
-     * Region Delete Action
-     */
-    public function delete(Request $request)
-    {
-        if(GC::checkModuleAccess('location_delete', $this->farm)) {
-            $id = GC::decryptString($request->id);
-            $location = PfcLocation::find($id);
-             $old_data = json_encode($location);
-            $location->is_deleted = 1;
-            if($location->save()) {
-                $log_entry = [
-                    'Location Deleted',
-                    'pfc_locations',
-                    $old_data,
-                    $location,
-                ];
-                AC::logEntry($log_entry);
-                return true;
-            }
-        }
-        return false;
-    }   
 }

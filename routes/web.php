@@ -14,6 +14,8 @@ use App\Http\Controllers\PfcSalesController;
 use App\Http\Controllers\PfcCustomerController;
 use App\Http\Controllers\PfcCustomerTypeController;
 use App\Http\Controllers\PfcLocationController;
+use App\Http\Controllers\PfcFarmLocationController;
+use App\Http\Controllers\PfcEggLocationController;
 use App\Http\Controllers\PfcRegionController;
 use App\Http\Controllers\PfcProductClassificationController;
 use App\Http\Controllers\PfcProductController;
@@ -77,8 +79,15 @@ Route::middleware(['auth'])->group(function() {
 		Route::get('/location-add', [PfcLocationController::class, 'add'])->name('pfc.location.add');
 		Route::get('/location-edit/{id?}', [PfcLocationController::class, 'edit'])->name('pfc.location.edit');
 		Route::post('/location-delete', [PfcLocationController::class, 'delete'])->name('pfc.location.delete');
+		// Farm Location
+		Route::get('/location/farm', [PfcFarmLocationController::class, 'index'])->name('pfc.farm.location');
+		// Egg Location
+		Route::get('/location/egg', [PfcEggLocationController::class, 'index'])->name('pfc.egg.location');
 
 		Route::get('/customer-type', [PfcCustomerTypeController::class, 'index'])->name('pfc.customer.type');
+		Route::get('/customer-type-add', [PfcCustomerTypeController::class, 'add'])->name('pfc.customer.type.add');
+		Route::get('/customer-type-edit/{id?}', [PfcCustomerTypeController::class, 'edit'])->name('pfc.customer.type.edit');
+		Route::post('/customer-type-delete', [PfcCustomerTypeController::class, 'delete'])->name('pfc.customer.type.delete');
 
 		Route::get('/customer', [PfcCustomerController::class, 'index'])->name('pfc.customer');
 

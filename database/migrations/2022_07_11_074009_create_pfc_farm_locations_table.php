@@ -13,10 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('api_provinces', function (Blueprint $table) {
+        Schema::create('pfc_farm_locations', function (Blueprint $table) {
             $table->id();
-            $table->string('region_id')->nullable();
-            $table->string('name')->nullable();
+            $table->string('location_name')->nullable();
+            $table->string('location_code')->nullable();
+            $table->text('location_description')->nullable();
             $table->boolean('is_active')->default(1);
             $table->boolean('is_deleted')->default(0);
             $table->timestamps();
@@ -30,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('api_provinces');
+        Schema::dropIfExists('pfc_farm_locations');
     }
 };

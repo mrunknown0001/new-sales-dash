@@ -3,21 +3,20 @@
 namespace App\Http\Livewire\Pfc;
 
 use Livewire\Component;
-use App\Models\PfcRegion;
+use App\Models\ApiRegion;
 use App\Http\Controllers\AuditController as AC;
 use App\Http\Controllers\GeneralController as GC;
 
 class PfcRegionEdit extends Component
 {
-	public PfcRegion $region;
+	public ApiRegion $region;
 	public $old_region;
 
 	protected function rules()
 	{
 		return [
-			'region.region_name' => 'required',
-			'region.region_code' => 'required',
-			'region.region_description' => 'nullable',
+			'region.name' => 'required',
+			'region.code' => 'required',
 			'region.is_active' => 'nullable'
 		];
 	}
@@ -36,6 +35,19 @@ class PfcRegionEdit extends Component
     public function update()
     {
     	$this->validate();
+
+        // Manual Check/Validation if region if exist and active
+        $current_region_code = $this->region->code;
+        $region_check = ApiRegion::where('code', $this->region->code)
+                            ->where('is_active', 1)
+                            ->whereNot('id', $this->region->id)
+                            ->first();
+
+        if(isset($region_check) && strtoupper($current_region_code) == strtoupper($region_check->code) ) {
+            $this->addError('region.code', 'The Region Code already exists');
+            return false;
+        }
+
     	$this->region->save();
 
         // [action, table, old_value, new_value]
@@ -48,7 +60,7 @@ class PfcRegionEdit extends Component
         AC::logEntry($log_entry);
 
     	$this->dispatchBrowserEvent('region-updated', [
-    		'title' => 'Region Updated: ' . strtoupper($this->region->region_name),
+    		'title' => 'Region Updated: ' . strtoupper($this->region->name),
     		'icon' => 'success',
     		'text' => '',
     	]);

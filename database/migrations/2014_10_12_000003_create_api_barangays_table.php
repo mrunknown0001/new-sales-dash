@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('province_id')->nullable();
             $table->string('city_id')->nullable();
             $table->string('name')->nullable();
+            $table->boolean('is_active')->default(1);
+            $table->boolean('is_deleted')->default(0);
             $table->timestamps();
         });
     }
