@@ -6,8 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\GeneralController as GC;
 use App\Http\Controllers\AuditController as AC;
 use DataTables;
-use App\Models\PfcLocation;
-use App\Models\ApiRegion;
+use App\Models\PfcFarmLocation;
 
 class PfcEggLocationController extends Controller
 {
@@ -19,9 +18,9 @@ class PfcEggLocationController extends Controller
     public function index(Request $request)
     {
         if($request->ajax()) {
-            $locations = PfcLocation::where('is_active', 1)
+            $locations = PfcFarmLocation::where('is_active', 1)
                             ->where('is_deleted', 0)
-                            ->get(['id', 'region_id', 'location_name', 'location_code']);
+                            ->get(['id', 'location_name', 'location_code']);
 
             $data = collect();
             if($locations->count() > 0) {
@@ -39,7 +38,6 @@ class PfcEggLocationController extends Controller
                         }
                     }
                     $data->push([
-                        'region' => $l->region->name,
                         'location_name' => strtoupper($l->location_name),
                         'location_code' => strtoupper($l->location_code),
                         'action' => $action,

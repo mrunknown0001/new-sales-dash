@@ -23,7 +23,6 @@
       <table id="locations" class="table cell-border compact table-striped hover display nowrap" width="100%">
         <thead>
           <tr>
-            <th scope="col">{{ __('Region') }}</th>
             <th scope="col">{{ __('Location Name') }}</th>
             <th scope="col">{{ __('Location Code') }}</th>
             <th scope="col">{{ __('Action') }}</th>
@@ -47,9 +46,8 @@
           { className: "dt-center", targets: [ 0, 1, 2 ] }
         ],
 
-        ajax: "{{ route('pfc.location') }}",
+        ajax: "{{ route('pfc.farm.location') }}",
         columns: [
-          {data: 'region', name: 'region'},
           {data: 'location_name', name: 'location_name'},
           {data: 'location_code', name: 'location_code'},
           {data: 'action', name: 'action', orderable: false, searchable: false},
@@ -73,7 +71,7 @@
       e.preventDefault();
       var id = $(this).data('id');
       var name = $(this).data('name');
-      var title = "Edit Location?";
+      var title = "Edit Farm Location?";
       var html_text = "<p>Are you sure you want to edit <b>" + name + "</b>?</p>";
       Swal.fire({
         title: title,
@@ -108,7 +106,7 @@
       e.preventDefault();
       var id = $(this).data('id');
       var name = $(this).data('name');
-      var title = "Delete Location?";
+      var title = "Delete Farm Location?";
       var html_text = "<p>Are you sure you want to delete <b>" + name + "</b>?</p>";
       Swal.fire({
         title: title,
