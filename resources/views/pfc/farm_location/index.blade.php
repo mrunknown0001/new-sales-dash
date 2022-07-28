@@ -8,7 +8,7 @@
 
 @section('head-action')
 	@if($gc->checkModuleAccess('location_add', 'PFC'))
-		<a href="{{ route('pfc.location.add') }}" class="btn btn-link text-decoration-none">{{ __('ADD') }}</a>
+		<a href="{{ route('pfc.farm.location.add') }}" class="btn btn-link text-decoration-none">{{ __('ADD') }}</a>
 	@endif
   <button class="btn btn-link text-decoration-none" id="refresh"><i class="fa fa-sync"></i></button>
 @endsection
@@ -84,7 +84,7 @@
       }).then((result) => {
         if (result.value) {
           {{-- Redirect to Edit/Update Page --}}
-          var update_url = "{{ route('pfc.location.edit') }}"
+          var update_url = "{{ route('pfc.farm.location.edit') }}"
           window.location.replace(update_url + "/" + id);
         }
         else {
@@ -122,7 +122,7 @@
           $.ajax({
             type: "POST",
             data: {"_token": "{{ csrf_token() }}","id": id},
-            url: "{{ route('pfc.location.delete') }}",
+            url: "{{ route('pfc.farm.location.delete') }}",
             success: function(data){
               if(data) {
                 Swal.fire({

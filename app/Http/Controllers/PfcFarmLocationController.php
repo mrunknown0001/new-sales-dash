@@ -55,4 +55,59 @@ class PfcFarmLocationController extends Controller
 
     	return abort(403);
     }
+
+
+    /**
+     * Farm Location Add
+     * @return   View for Adding Farm Location
+     */
+    public function add()
+    {
+        if(GC::checkModuleAccess('location_add', $this->farm)) {
+            return view('pfc.farm_location.add-edit', ['action' => 'Add']);
+        }
+        return abort(403);
+    }
+
+
+    /**
+     * Farm Location Edit
+     * @param   $id Encrypted ID of Farm Location
+     */
+    public function edit($id)
+    {
+        if(GC::checkModuleAccess('location_edit', $this->farm)) {
+            $id = GC::decryptString($id);
+            $farm = PfcFarmLocation::findorfail($id);
+            return view('pfc.farm_location.add-edit', ['action' => 'Edit', 'farm' => $farm]);
+        }
+        return abort(403);
+    }
+
+
+
+    /**
+     * Farm Location Delete
+     * @param   $id Encrypted ID of Farm Location
+     */
+    public function delete(Request $request)
+    {
+        if(GC::checkModuleAccess('location_delete', $this->farm)) {
+            $id = GC::decryptString($request->id);
+            $farm = PfcFarmLocation::findorfail($id);
+            $old_data = json_encode($farm);
+            $farm->is_deleted = 1;
+            if($farm->save()) {
+                $log_entry = [
+                    'Location Deleted',
+                    'pfc_locations',
+                    $old_data,
+                    $farm,
+                ];
+                AC::logEntry($log_entry);
+                return true;
+            }
+        }
+        return abort(403);
+    }
 }

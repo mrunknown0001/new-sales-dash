@@ -36,7 +36,7 @@ class PfcCustomerTypeEdit extends Component
 
         $current_ctn = $this->customer_type->customer_type_name;
         $customer_type_check = PfcCustomerType::where('customer_type_name', $this->customer_type->customer_type_name)
-                            ->where('is_active', 1)
+                            ->where('is_deleted', 0)
                             ->whereNot('id', $this->customer_type->id)
                             ->first();
 

@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('customer_name', 300)->nullable();
             $table->string('customer_address')->nullable();
             $table->string('customer_contact')->nullable();
+            $table->boolean('is_active')->default(1);
+            $table->boolean('is_deleted')->default(0);
             $table->timestamps();
         });
     }

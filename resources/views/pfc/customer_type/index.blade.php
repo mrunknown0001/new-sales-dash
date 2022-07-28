@@ -37,7 +37,7 @@
 	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script>
     $(document).ready(function () {
-      let locations = $('#customer_types').DataTable({
+      let customer_types = $('#customer_types').DataTable({
         processing: true,
         serverSide: true,
         scrollX: true,

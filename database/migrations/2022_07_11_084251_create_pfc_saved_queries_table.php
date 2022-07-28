@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('date_created')->nullable();
             $table->text('query')->nullable();
             $table->string('description')->nullable();
+            $table->boolean('is_active')->default(1);
+            $table->boolean('is_deleted')->default(0);
             $table->timestamps();
         });
     }

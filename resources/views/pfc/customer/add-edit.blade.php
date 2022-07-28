@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-  {{ __('PFC Farm Location ') }} {{ $action }}
+	{{ __('PFC Customer ') }} {{ $action }}
 @endsection
 
 
@@ -9,9 +9,9 @@
   <div class="row">
     <div class="col-md-8 offset-2">
       @if($action == 'Add')
-        @livewire('pfc.pfc-farm-location-add')
+        @livewire('pfc.pfc-customer-add')
       @elseif($action == 'Edit')
-        @livewire('pfc.pfc-farm-location-edit', ['farm' => $farm])
+        @livewire('pfc.pfc-customer-edit', ['customer' => $customer])
       @endif
     </div>
   </div>

@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('product_type_id')->nullable();
             $table->string('product_name')->nullable();
             $table->text('product_description')->nullable();
+            $table->boolean('is_active')->default(1);
+            $table->boolean('is_deleted')->default(0);
             $table->timestamps();
         });
     }

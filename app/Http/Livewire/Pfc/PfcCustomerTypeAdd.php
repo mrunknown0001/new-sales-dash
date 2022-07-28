@@ -31,7 +31,7 @@ class PfcCustomerTypeAdd extends Component
 
         // Manual Validation
         $type_check = PfcCustomerType::where('customer_type_name', $this->customer_type_name)
-                            ->where('is_active', 1)
+                            ->where('is_deleted', 0)
                             ->first();
 
         if(isset($type_check)) {
@@ -41,7 +41,6 @@ class PfcCustomerTypeAdd extends Component
 
     	$ct = new PfcCustomerType();
     	$ct->customer_type_name = $this->customer_type_name;
-
     	$ct->save();
 
         // [action, table, old_value, new_value]

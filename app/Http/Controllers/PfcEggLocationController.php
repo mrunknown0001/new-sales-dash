@@ -6,19 +6,19 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\GeneralController as GC;
 use App\Http\Controllers\AuditController as AC;
 use DataTables;
-use App\Models\PfcFarmLocation;
+use App\Models\PfcEggLocation;
 
 class PfcEggLocationController extends Controller
 {
 	private $farm = 'PFC';
 
     /**
-     * PFC Location Page
+     * PFC Egg Location Page
      */
     public function index(Request $request)
     {
         if($request->ajax()) {
-            $locations = PfcFarmLocation::where('is_active', 1)
+            $locations = PfcEggLocation::where('is_active', 1)
                             ->where('is_deleted', 0)
                             ->get(['id', 'location_name', 'location_code']);
 
@@ -54,5 +54,60 @@ class PfcEggLocationController extends Controller
     	}
 
     	return abort(403);
+    }
+
+
+
+    /**
+     * PFC Egg Location Add
+     * @return PFC Egg Location Add Page
+     */
+    public function add()
+    {
+        if(GC::checkModuleAccess('location_add', $this->farm)) {
+            return view('pfc.egg_location.add-edit', ['action' => 'Add']);
+        }
+        return abort(403);
+    }
+
+
+   /**
+     * PFC Egg Location Edit
+     * @return PFC Egg Location Edit Page
+     */
+    public function edit($id)
+    {
+        if(GC::checkModuleAccess('location_edit', $this->farm)) {
+            $id = GC::decryptString($id);
+            $eggloc = PfcEggLocation::findorfail($id);
+            return view('pfc.egg_location.add-edit', ['action' => 'Edit', 'eggloc' => $eggloc]);
+        }
+        return abort(403);
+    }
+
+
+    /**
+     *  Egg Loc Delete
+     * @param   $id Encrypted ID of  Egg Loc
+     */
+    public function delete(Request $request)
+    {
+        if(GC::checkModuleAccess('location_delete', $this->farm)) {
+            $id = GC::decryptString($request->id);
+            $farm = PfcEggLocation::findorfail($id);
+            $old_data = json_encode($farm);
+            $farm->is_deleted = 1;
+            if($farm->save()) {
+                $log_entry = [
+                    'Location Deleted',
+                    'pfc_egg_locations',
+                    $old_data,
+                    $farm,
+                ];
+                AC::logEntry($log_entry);
+                return true;
+            }
+        }
+        return abort(403);
     }
 }

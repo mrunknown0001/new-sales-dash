@@ -42,7 +42,7 @@ class PfcLocationEdit extends Component
         // Manual Check/Validation if region if exist and active
         $current_location_code = $this->location->location_code;
         $location_check = PfcLocation::where('location_code', $this->location->location_code)
-                            ->where('is_active', 1)
+                            ->where('is_deleted', 0)
                             ->whereNot('id', $this->location->id)
                             ->first();
 

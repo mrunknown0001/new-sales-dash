@@ -32,7 +32,7 @@ class PfcRegionAdd extends Component
 
         // Manual Check/Validation if region if exist and active
         $region_check = ApiRegion::where('code', $this->code)
-                            ->where('is_active', 1)
+                            ->where('is_deleted', 0)
                             ->first();
 
         if(isset($region_check)) {

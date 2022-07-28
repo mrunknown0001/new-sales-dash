@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('farm_code')->nullable();
             $table->string('farm_description')->nullable();
             $table->string('farm_contact')->nullable();
+            $table->boolean('is_active')->default(1);
+            $table->boolean('is_deleted')->default(0);
             $table->timestamps();
         });
     }

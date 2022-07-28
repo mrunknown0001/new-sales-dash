@@ -43,7 +43,7 @@ class PfcLocationAdd extends Component
 
         // Manual Validation
         $location_check = PfcLocation::where('location_code', $this->location_code)
-                            ->where('is_active', 1)
+                            ->where('is_deleted', 0)
                             ->first();
 
         if(isset($location_check)) {

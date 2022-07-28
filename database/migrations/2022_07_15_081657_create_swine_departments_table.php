@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('department_name')->nullable();
             $table->string('department_code')->nullable();
             $table->string('deppatment_description')->nullable();
+            $table->boolean('is_active')->default(1);
+            $table->boolean('is_deleted')->default(0);
             $table->timestamps();
         });
     }

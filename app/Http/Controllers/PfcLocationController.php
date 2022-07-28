@@ -99,12 +99,12 @@ class PfcLocationController extends Controller
         if(GC::checkModuleAccess('location_delete', $this->farm)) {
             $id = GC::decryptString($request->id);
             $location = PfcLocation::find($id);
-             $old_data = json_encode($location);
+            $old_data = json_encode($location);
             $location->is_deleted = 1;
             if($location->save()) {
                 $log_entry = [
                     'Location Deleted',
-                    'pfc_locations',
+                    'pfc_farm_locations',
                     $old_data,
                     $location,
                 ];
