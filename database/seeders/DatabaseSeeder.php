@@ -56,5 +56,6 @@ class DatabaseSeeder extends Seeder
         $this->call(PfcLocationsTableSeeder::class);
         $this->call(PfcFarmLocationsTableSeeder::class);
         $this->call(PfcEggLocationsTableSeeder::class);
+        $this->call(PfcCustomerTypesTableSeeder::class);
     }
 }

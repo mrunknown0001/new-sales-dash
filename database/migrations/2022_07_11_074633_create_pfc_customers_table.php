@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('pfc_customers', function (Blueprint $table) {
             $table->id();
-            $table->string('csutomer_type_id')->nullable();
+            $table->string('customer_type_id')->nullable();
             $table->string('customer_name')->nullable();
             $table->text('customer_address')->nullable();
             $table->string('customer_email')->nullable();

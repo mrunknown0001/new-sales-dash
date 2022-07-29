@@ -67,5 +67,23 @@ class PfcCustomerController extends Controller
                                 ->get(['id', 'customer_type_name']);
             return view('pfc.customer.add-edit', ['action' => 'Add', 'customer_types' => $customer_types]);
         }
+        return abort(403);
+    }
+
+
+    /**
+     * PFC Customer Edit Page
+     * @param   $id Encypted ID of Customer
+     */
+    public function edit($id)
+    {
+        if(GC::checkModuleAccess('customer_add', $this->farm)) {
+            $id = GC::decryptString($id);
+            $customer = PfcCustomer::findorfail($id);
+            $customer_types = PfcCustomerType::where('is_deleted', 0)
+                                ->get(['id', 'customer_type_name']);
+            return view('pfc.customer.add-edit', ['action' => 'Edit', 'customer_types' => $customer_types, 'customer' => $customer]);
+        }
+        return abort(403);
     }
 }

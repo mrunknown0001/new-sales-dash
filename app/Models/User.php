@@ -25,5 +25,14 @@ class User extends Authenticatable
         'role'
     ];
 
-
+    /**
+     * Route notifications for the Slack channel.
+     *
+     * @param  \Illuminate\Notifications\Notification  $notification
+     * @return string
+     */
+    public function routeNotificationForSlack($notification)
+    {
+        return 'https://hooks.slack.com/services/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';
+    }
 }
