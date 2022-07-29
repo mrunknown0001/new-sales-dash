@@ -3,11 +3,11 @@
 @extends('layouts.app')
 
 @section('title')
-	{{ __('PFC Customer Type') }}
+	{{ __('PFC Customer') }}
 @endsection
 
 @section('head-action')
-	@if($gc->checkModuleAccess('customer_type_add', 'PFC'))
+	@if($gc->checkModuleAccess('customer_add', 'PFC'))
 		<a href="{{ route('pfc.customer.add') }}" class="btn btn-link text-decoration-none">{{ __('ADD') }}</a>
 	@endif
   <button class="btn btn-link text-decoration-none" id="refresh"><i class="fa fa-sync"></i></button>

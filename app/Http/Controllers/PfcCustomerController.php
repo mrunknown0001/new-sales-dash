@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\GeneralController as GC;
 use App\Http\Controllers\AuditController as AC;
 use App\Models\PfcCustomer;
+use App\Models\PfcCustomerType;
 use DataTables;
 
 class PfcCustomerController extends Controller
@@ -62,7 +63,9 @@ class PfcCustomerController extends Controller
     public function add()
     {
         if(GC::checkModuleAccess('customer_add', $this->farm)) {
-            return view('pfc.customer.add-edit', ['action' => 'Add']);
+            $customer_types = PfcCustomerType::where('is_deleted', 0)
+                                ->get(['id', 'customer_type_name']);
+            return view('pfc.customer.add-edit', ['action' => 'Add', 'customer_types' => $customer_types]);
         }
     }
 }

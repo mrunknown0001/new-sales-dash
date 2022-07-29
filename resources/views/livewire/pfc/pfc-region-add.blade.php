@@ -3,14 +3,14 @@
 	<form wire:submit.prevent="save" autocomplete="off">
 		@csrf
 		<div class="mb-3">
-		  <label for="name" class="form-label required">Region Name</label>
+		  <label for="name" class="form-label required">{{ __('Region Name') }}</label>
 		  <input type="text" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" name="name" id="name" wire:model="name" placeholder="Region Name">
 		  @if($errors->has('name'))
 		    <p class="text-danger">{{ $errors->first('name') }}</p>
 		  @endif
 		</div>
 		<div class="mb-3">
-		  <label for="code" class="form-label required">Region Code</label>
+		  <label for="code" class="form-label required">{{ __('Region Code') }}</label>
 		  <input type="text" class="form-control {{ $errors->has('code') ? 'is-invalid' : '' }}" name="code" id="code" wire:model="code" placeholder="Region Code">
 		  @if($errors->has('code'))
 		    <p class="text-danger">{{ $errors->first('code') }}</p>

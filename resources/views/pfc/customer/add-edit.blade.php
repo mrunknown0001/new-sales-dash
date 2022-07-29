@@ -9,9 +9,9 @@
   <div class="row">
     <div class="col-md-8 offset-2">
       @if($action == 'Add')
-        @livewire('pfc.pfc-customer-add')
+        @livewire('pfc.pfc-customer-add', ['customer_types' => $customer_types])
       @elseif($action == 'Edit')
-        @livewire('pfc.pfc-customer-edit', ['customer' => $customer])
+        @livewire('pfc.pfc-customer-edit', ['customer' => $customer, 'customer_types' => $customer_types])
       @endif
     </div>
   </div>
