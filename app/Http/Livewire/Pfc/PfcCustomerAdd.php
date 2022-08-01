@@ -10,7 +10,7 @@ use App\Notifications\SendNotification;
 class PfcCustomerAdd extends Component
 {
 	public $customer_name;
-	public $customer_types = array();
+    public $customer_types = array();
 	public $customer_type;
 	public $customer_address;
 	public $customer_email;
@@ -30,7 +30,7 @@ class PfcCustomerAdd extends Component
 
 	public function mount($customer_types)
 	{
-		$this->customer_types = $customer_types;
+        $this->customer_types = $customer_types;
 	}
 
     public function render()
@@ -79,6 +79,9 @@ class PfcCustomerAdd extends Component
     	]);
 
     	// clear form
-    	$this->reset();
+        $this->customer_name = "";
+        $this->customer_address = "";
+        $this->customer_email = "";
+        $this->customer_contact_number = "";
     }
 }

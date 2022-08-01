@@ -77,12 +77,40 @@ class PfcCustomerController extends Controller
      */
     public function edit($id)
     {
-        if(GC::checkModuleAccess('customer_add', $this->farm)) {
+        if(GC::checkModuleAccess('customer_edit', $this->farm)) {
             $id = GC::decryptString($id);
             $customer = PfcCustomer::findorfail($id);
             $customer_types = PfcCustomerType::where('is_deleted', 0)
                                 ->get(['id', 'customer_type_name']);
             return view('pfc.customer.add-edit', ['action' => 'Edit', 'customer_types' => $customer_types, 'customer' => $customer]);
+        }
+        return abort(403);
+    }
+
+
+
+    /**
+     * PFC Customer Delete Page
+     * @param String $id Encrpted ID of PFC Customer
+     * @return   True or False
+     */
+    public function delete(Request $request)
+    {
+        if(GC::checkModuleAccess('customer_delete', $this->farm)) {
+            $id = GC::decryptString($request->id);
+            $customer = PfcCustomer::findorfail($id);
+            $old_data = json_encode($customer);
+            $customer->is_deleted = 1;
+            if($customer->save()) {
+                $log_entry = [
+                    'Deleted',
+                    'pfc_cusotmers',
+                    $old_data,
+                    $customer,
+                ];
+                AC::logEntry($log_entry);
+                return true;
+            }
         }
         return abort(403);
     }

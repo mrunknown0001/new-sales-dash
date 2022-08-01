@@ -124,7 +124,7 @@
             success: function(data){
               if(data) {
                 Swal.fire({
-                  title: "Customer Type Deleted",
+                  title: "Customer Deleted",
                   text: "",
                   icon: "success",
                   showCancelButton: false,
@@ -132,8 +132,8 @@
                   cancelButtonColor: '#d33',
                   confirmButtonText: 'Close'
                 });
-                var customer_types = $('#customer_types').DataTable();
-                customer_types.ajax.reload();
+                var customers = $('#customers').DataTable();
+                customers.ajax.reload();
               }
               else {
                 Swal.fire({

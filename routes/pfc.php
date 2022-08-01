@@ -51,13 +51,28 @@ Route::middleware(['auth'])->group(function() {
 		Route::post('/customer-delete', [PfcCustomerController::class, 'delete'])->name('pfc.customer.delete');
 
 		Route::get('/product-type', [PfcProductTypeController::class, 'index'])->name('pfc.product.type');
+		Route::get('/product-type-add', [PfcProductTypeController::class, 'add'])->name('pfc.product.type.add');
+		Route::get('/product-type-edit/{id?}', [PfcProductTypeController::class, 'edit'])->name('pfc.product.type.edit');
+		Route::post('/product-type-delete', [PfcProductTypeController::class, 'delete'])->name('pfc.product.type.delete');
 
 		Route::get('/product', [PfcProductController::class, 'index'])->name('pfc.product');
+		Route::get('/product-add', [PfcProductController::class, 'add'])->name('pfc.product.add');
+		Route::get('/product-edit', [PfcProductController::class, 'edit'])->name('pfc.product.edit');
+		Route::get('/product-delete', [PfcProductController::class, 'delete'])->name('pfc.product.delete');
 
 		Route::get('/product-classification', [PfcProductClassificationController::class, 'index'])->name('pfc.product.classification');
+		Route::get('/product-classification-add', [PfcProductClassificationController::class, 'add'])->name('pfc.product.classification.add');
+		Route::get('/product-classification-edit', [PfcProductClassificationController::class, 'edit'])->name('pfc.product.classification.edit');
+		Route::get('/product-classification-delete', [PfcProductClassificationController::class, 'delete'])->name('pfc.product.classification.delete');
 
 		Route::get('/product-quality-type', [PfcProductQualityTypeController::class, 'index'])->name('pfc.product.quality.type');
+		Route::get('/product-quality-type-add', [PfcProductQualityTypeController::class, 'add'])->name('pfc.product.quality.type.add');
+		Route::get('/product-quality-type-edit', [PfcProductQualityTypeController::class, 'edit'])->name('pfc.product.quality.type.edit');
+		Route::get('/product-quality-type-delete', [PfcProductQualityTypeController::class, 'delete'])->name('pfc.product.quality.type.delete');
 
+
+		/** POS **/
+		Route::get('/POS', [PfcPosController::class, 'index'])->name('pfc.pos');
 	});
 
 });

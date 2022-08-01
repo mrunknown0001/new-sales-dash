@@ -91,7 +91,7 @@ class PfcCustomerTypeController extends Controller
      */
     public function delete(Request $request)
     {
-        if(GC::checkModuleAccess('location_delete', $this->farm)) {
+        if(GC::checkModuleAccess('customer_type_delete', $this->farm)) {
             $id = GC::decryptString($request->id);
             $ct = PfcCustomerType::findorfail($id);
             $old_data = json_encode($ct);
@@ -99,7 +99,7 @@ class PfcCustomerTypeController extends Controller
             if($ct->save()) {
                 $log_entry = [
                     'Deleted',
-                    'pfc_cusotmer_type',
+                    'pfc_cusotmer_types',
                     $old_data,
                     $ct,
                 ];
