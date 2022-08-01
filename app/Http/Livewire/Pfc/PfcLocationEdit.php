@@ -59,7 +59,7 @@ class PfcLocationEdit extends Component
         $log_entry = [
             'Update',
             'pfc_locations',
-            '',
+            $this->old_location,
             $this->location,
         ];
         AC::logEntry($log_entry);

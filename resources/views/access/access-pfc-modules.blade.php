@@ -17,12 +17,6 @@
 		<li class="list-inline-item"><input type="checkbox" {{ $access->checkAccess($user_id, $farm, 'charts_module') ? 'checked' : '' }} value="charts_module" name="access[]" wire:model="access" id="charts_module"> <label for="charts_module">{{ __('Module') }}</label></li>
 	</ul>
 </div>
-{{-- <div class="form-group">
-	<h4>{{ __('Charts') }}:</h4>
-	<ul class="list-inline">
-		<li class="list-inline-item"><input type="checkbox" {{ \App\Http\Controllers\AccessController::checkAccess($user_id, $farm, 'charts_module') ? 'checked' : '' }} value="charts_module" name="access[]" wire:model="access" id="charts_module"> <label for="charts_module">{{ __('Module') }}</label></li>
-	</ul>
-</div> --}}
 <div class="form-group">
 	<h4>{{ __('Reports') }}:</h4>
 	<ul class="list-inline">
