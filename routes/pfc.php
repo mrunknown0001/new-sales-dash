@@ -63,13 +63,12 @@ Route::middleware(['auth'])->group(function() {
 		Route::get('/product-classification', [PfcProductClassificationController::class, 'index'])->name('pfc.product.classification');
 		Route::get('/product-classification-add', [PfcProductClassificationController::class, 'add'])->name('pfc.product.classification.add');
 		Route::get('/product-classification-edit/{id?}', [PfcProductClassificationController::class, 'edit'])->name('pfc.product.classification.edit');
-		Route::get('/product-classification-delete', [PfcProductClassificationController::class, 'delete'])->name('pfc.product.classification.delete');
+		Route::post('/product-classification-delete', [PfcProductClassificationController::class, 'delete'])->name('pfc.product.classification.delete');
 
 		Route::get('/product-quality-type', [PfcProductQualityTypeController::class, 'index'])->name('pfc.product.quality.type');
 		Route::get('/product-quality-type-add', [PfcProductQualityTypeController::class, 'add'])->name('pfc.product.quality.type.add');
 		Route::get('/product-quality-type-edit/{id?}', [PfcProductQualityTypeController::class, 'edit'])->name('pfc.product.quality.type.edit');
-		Route::get('/product-quality-type-delete', [PfcProductQualityTypeController::class, 'delete'])->name('pfc.product.quality.type.delete');
-
+		Route::post('/product-quality-type-delete', [PfcProductQualityTypeController::class, 'delete'])->name('pfc.product.quality.type.delete');
 
 		/** POS **/
 		Route::get('/POS', [PfcPosController::class, 'index'])->name('pfc.pos');
